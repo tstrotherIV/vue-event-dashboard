@@ -1,16 +1,24 @@
 <template>
   <div>
     <div>
-      <h1>Event Calendar</h1>
+      <h1 class="text-center">Event Calendar</h1>
     </div>
     <div>
-      <h4>Date Range placeholder</h4>
+      <h4 class="text-center" v-if="startDate != endDate">Events between {{ formatDate(startDate) }} and {{ formatDate(endDate) }}</h4>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+import { dateConverter } from "../mixins/dateMixin";
+
+export default {
+  mixins: [dateConverter],
+  computed: {
+    ...mapState(["startDate", "endDate"]),
+  },
+};
 </script>
 
 <style></style>
